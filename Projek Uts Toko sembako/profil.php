@@ -1,0 +1,363 @@
+<?php
+    session_start();
+    include 'db.php';
+    if($_SESSION['status_login'] != true){
+        echo '<script>window.location="login.php"</script>';
+    }
+
+    $query = mysqli_query($conn, "SELECT * FROM tb_admin WHERE admin_id = '".$_SESSION['id']."' ");
+    $d = mysqli_fetch_object($query);
+?>
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Toko Sembako | Best </title>
+    <link rel="icon" href="image/BOOK STORE.png" type="png" sizes="40x25" />
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    
+  </head>
+  <body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+      <!-- Navbar -->
+      <nav class="main-header navbar navbar-expand navbar-danger shadow navbar-dark">
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+          <!-- Navbar Search -->
+          <li class="nav-item">
+            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+              <i class="fas fa-search"></i>
+            </a>
+            <div class="navbar-search-block">
+              <form class="form-inline">
+                <div class="input-group input-group-sm">
+                  <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" />
+                  <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </li>
+
+          <!-- Messages Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+              <i class="far fa-comments"></i>
+              <span class="badge badge-danger navbar-badge">3</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+              <a href="#" class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle" />
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      Brad Diesel
+                      <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                    </h3>
+                    <p class="text-sm">Call me whenever you can...</p>
+                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3" />
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      John Pierce
+                      <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                    </h3>
+                    <p class="text-sm">I got your message bro</p>
+                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <!-- Message Start -->
+                <div class="media">
+                  <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3" />
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">
+                      Nora Silvester
+                      <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                    </h3>
+                    <p class="text-sm">The subject goes here</p>
+                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                  </div>
+                </div>
+                <!-- Message End -->
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+            </div>
+          </li>
+          <!-- Notifications Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" href="#">
+              <i class="far fa-bell"></i>
+              <span class="badge badge-warning navbar-badge">15</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+              <span class="dropdown-header">15 Notifications</span>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-envelope mr-2"></i> 4 new messages
+                <span class="float-right text-muted text-sm">3 mins</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-users mr-2"></i> 8 friend requests
+                <span class="float-right text-muted text-sm">12 hours</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item">
+                <i class="fas fa-file mr-2"></i> 3 new reports
+                <span class="float-right text-muted text-sm">2 days</span>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+              <i class="fas fa-expand-arrows-alt"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <aside style="background-color: black" class="main-sidebar sidebar-dark-danger elevation-4">
+        <!-- Brand Logo -->
+        <a href="dashboard.html" class="brand-link">
+          <span class="brand-text font-weight-light">Toko</span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+          
+          <!-- SidebarSearch Form -->
+          <div class="form-inline mt-3">
+            <div class="input-group" data-widget="sidebar-search">
+              <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search" />
+              <div class="input-group-append">
+                <button class="btn btn-sidebar">
+                  <i class="fas fa-search fa-fw"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sidebar user panel (optional) -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image" />
+            </div>
+            <div class="info">
+              <a href="#" class="d-block">Leo</a>
+            </div>
+          </div>
+
+          <!-- Sidebar Menu -->
+          <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+              <li class="nav-item">
+                <a href="dashboard.php" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>Dashbord</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="profil.php" class="nav-link active">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>Profil</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="kategori.php" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>Kategori</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="data-produk.php" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>Menu</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="keluar.php" class="nav-link">
+                  <i class="nav-icon fas fa-list"></i>
+                  <p>Keluar</p>
+                </a>
+              </li>
+              <li><hr style="border: solid 1px grey" class="dropdown-divider" /></li>
+              <li class="nav-item">
+                <a href="login.html" class="nav-link">
+                  <i class="nav-icon fas fa-sign-out-alt"></i>
+                  <p>Logout</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+      </aside>
+
+     <!-- Content Wrapper. Contains page content -->
+     <div style="background-color: whitesmoke" class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <br />
+      <div class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Profil</h1>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item">Dashbord</li>
+                <li class="breadcrumb-item active">Profil</li>
+              </ol>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+
+      <!-- Main content -->
+      <div class="content">
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+        <div class="box">
+            <form action="" method="POST">
+                <input type="text" name="nama" placeholder="Nama Lengkap" class="input-control" value="<?php echo $d->admin_nama ?>" required>
+                <input type="text" name="user" placeholder="Username" class="input-control" value="<?php echo $d->username ?>" required>
+                <input type="text" name="hp" placeholder="No Hp" class="input-control" value="<?php echo $d->no_telepon ?>" required>
+                <input type="text" name="email" placeholder="Email" class="input-control" value="<?php echo $d->email ?>" required>
+                <input type="text" name="alamat" placeholder="Alamat" class="input-control" value="<?php echo $d->alamat ?>" required>
+                <input type="submit" name="submit" value="Ubah Profil" class="btn">
+            </form>
+            <?php
+                if(isset($_POST['submit'])){
+                    $nama   = $_POST['nama'];
+                    $user   = $_POST['user'];
+                    $hp     = $_POST['hp'];
+                    $email  = $_POST['email'];
+                    $alamat = $_POST['alamat'];
+
+                    $update = mysqli_query($conn, "UPDATE tb_admin SET
+                    admin_nama = '".$nama."',
+                    username = '".$user."',
+                    no_telepon = '".$hp."',
+                    email = '".$email."',
+                    alamat = '".$alamat."'
+                    WHERE admin_id = '".$d->admin_id."' ");
+                
+                    if($update){
+                        echo '<script>alert("Ubah data berhasil")</script>';
+                        echo '<script>window.location="profil.php"</script>';
+                    }else{
+                        echo 'gagal'.mysqli_error($conn);
+                    }
+                }
+            ?>
+        </div>
+        <h3>Ubah Password</h3>
+        <div class="box">
+            <form action="" method="POST">
+                <input type="password" name="pass1" placeholder="Password Baru" class="input-control" required>
+                <input type="password" name="pass2" placeholder="Konfirmasi Password Baru" class="input-control"  required>
+                <input type="submit" name="ubah_password" value="Ubah Password" class="btn">
+            </form>
+            <?php
+                if(isset($_POST['ubah_password'])){
+                    $pass1   = $_POST['pass1'];
+                    $pass2   = $_POST['pass2'];
+
+                    if($pass2 != $pass1){
+                        echo '<script>alert("Konfirmasi password baru tidak sesuai!")</script>';
+                    }else{
+                        $u_pass = mysqli_query($conn, "UPDATE tb_admin SET
+                            password = '".$pass1."'
+                            WHERE admin_id = '".$d->admin_id."' ");
+
+                        if($u_pass){
+                            echo '<script>alert("Ubah data berhasil")</script>';
+                            echo '<script>window.location="profil.php"</script>';
+                        }else{
+                            echo 'gagal'.mysqli_error($conn);
+                        }
+                        
+                    }
+                }
+            ?>
+        </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- /.content -->
+      <br />
+    </div>
+    <!-- /.content-wrapper -->
+
+
+      <!-- Main Footer -->
+      <footer class="main-footer bg-danger">
+        <!-- To the right -->
+        <div class="float-right d-none d-sm-inline">Official Toko</div>
+        <!-- Default to the left -->
+        <p>Created with <i class="bi bi-heart-fill text-light"></i> by <a class="text-black fw-bold" href="https://api.whatsapp.com/send?phone=6281234567&text=udah liat semuanya, kerenn ">Me</a></p>
+      </footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+  </body>
+</html>

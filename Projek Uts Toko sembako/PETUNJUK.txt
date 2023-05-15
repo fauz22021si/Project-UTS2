@@ -1,0 +1,7 @@
+---- SELAMAT DATANG DI APLIKASI WARUNG MAKAN ----
+
+petunjuk pemakaian:
+1. Import database dbwarung.sql yang telah kami sediakan ke phpmyadmin lokal
+2. Lalu sesuaikan konfigurasi username dan password serta nama database database di file db.php 
+
+Selamat Mencoba :)
